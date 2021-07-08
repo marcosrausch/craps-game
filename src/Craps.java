@@ -16,9 +16,9 @@ public class Craps {
 
     public void play() {
 
-        int points = 0;
+        int point = 0;
         Partial game;
-        int diceSummary = throwDice();
+        int diceSummary = rollDice();
 
         switch (diceSummary) {
             case SEVEN:
@@ -32,15 +32,15 @@ public class Craps {
                 break;
            default:
                 game = Partial.AGAIN;
-                points = diceSummary;
-                System.out.printf("Points are %d\n", points);
+                point = diceSummary;
+                System.out.printf("Points are %d\n", point);
                 break;
         }
 
         while (game == Partial.AGAIN) {
-            diceSummary = throwDice();
+            diceSummary = rollDice();
 
-            if (diceSummary == points) {
+            if (diceSummary == point) {
                 game = Partial.WON;
             } else if (diceSummary == SEVEN) {
                 game = Partial.LOST;
@@ -54,7 +54,7 @@ public class Craps {
         }
     }
 
-    public int throwDice() {
+    public int rollDice() {
         int die1 = 1 + random.nextInt(6);
         int die2 = 1 + random.nextInt(6);
 
